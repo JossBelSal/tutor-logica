@@ -1,0 +1,22 @@
+# Convención del repo, antes solo inferible del código.
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+
+[*.md]
+indent_size = 2
+max_line_length = 100
+# Markdown usa dos espacios al final para forzar salto de línea.
+trim_trailing_whitespace = false
+
+[*.py]
+indent_size = 4
+max_line_length = 100
+
+[*.yml]
+indent_size = 2

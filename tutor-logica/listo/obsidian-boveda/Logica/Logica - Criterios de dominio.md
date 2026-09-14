@@ -38,6 +38,19 @@ bloque correspondiente del mapa:
 | 10 — Diseño y arquitectura | B7.1 – B7.6 |
 | 11 — Auditoría de código de IA | B9.1 – B9.6 |
 
+### Si un ID cambia
+
+Los IDs son **estables**: un concepto conserva el suyo aunque se mueva de bloque. Pero si alguna
+vez hay que renumerar, el avance ya registrado manda sobre la numeración:
+
+1. **Nunca renumeres sin migrar.** Una nota de concepto con un ID que ya no existe en el mapa es
+   avance perdido: no la encuentra ni el Dataview ni tú.
+2. Renombra la nota (`B4-10 Recursión.md`) y corrige los wikilinks que la citan en la bitácora.
+   El historial no se reescribe: la entrada vieja se queda como está, y la nueva anota el cambio
+   (`Renumerado: B3.5 → B4.10`).
+3. Si no estás seguro de a qué concepto corresponde una nota vieja, **pregunta antes de tocarla**.
+   Perder la marca de un concepto dominado cuesta más que dejar un ID desalineado un rato.
+
 ## Punto de partida
 
 Ya conoces variables, strings, f-strings y tipos de datos básicos. Eso basta para empezar; no
