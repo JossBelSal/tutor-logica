@@ -1,0 +1,62 @@
+{
+  "formato": 1,
+  "adaptador": "obsidian-boveda",
+  "archivos": [
+    {
+      "fuente": "AGENTS-tutor.md",
+      "destino": "AGENTS-tutor.md"
+    },
+    {
+      "fuente": "CLAUDE.md",
+      "destino": "CLAUDE.md"
+    },
+    {
+      "fuente": "INSTALACION.md",
+      "destino": "INSTALACION.md"
+    },
+    {
+      "fuente": "agentes/dynamics.md",
+      "destino": ".claude/agents/dynamics.md"
+    },
+    {
+      "fuente": "agentes/pythor.md",
+      "destino": ".claude/agents/pythor.md"
+    },
+    {
+      "fuente": "criterios-dominio.md",
+      "destino": "Logica/Logica - Criterios de dominio.md"
+    },
+    {
+      "fuente": "mapa-conceptos.md",
+      "destino": "Logica/Logica - Mapa de conceptos.md"
+    },
+    {
+      "fuente": "metodo-tutor.md",
+      "destino": "Logica/_tutor/Tutor - Metodo.md"
+    },
+    {
+      "fuente": "skills/cierre-de-sesion/SKILL.md",
+      "destino": ".claude/skills/cierre-de-sesion/SKILL.md"
+    },
+    {
+      "fuente": "skills/comparar-lenguajes/SKILL.md",
+      "destino": ".claude/skills/comparar-lenguajes/SKILL.md"
+    },
+    {
+      "fuente": "skills/destilar-sesion/SKILL.md",
+      "destino": ".claude/skills/destilar-sesion/SKILL.md"
+    },
+    {
+      "fuente": "skills/diagnostico-logica/SKILL.md",
+      "destino": ".claude/skills/diagnostico-logica/SKILL.md"
+    },
+    {
+      "fuente": "skills/reto-por-niveles/SKILL.md",
+      "destino": ".claude/skills/reto-por-niveles/SKILL.md"
+    },
+    {
+      "fuente": "skills/revisar-mi-codigo/SKILL.md",
+      "destino": ".claude/skills/revisar-mi-codigo/SKILL.md"
+    }
+  ]
+}

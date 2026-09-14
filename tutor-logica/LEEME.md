@@ -103,3 +103,18 @@ Si estudias en Claude Code, el estado se actualiza solo. Antes de pasar a un cha
      carpeta a `.claude/skills/`.
    - Si cambió el método o el mapa: ese archivo a los tres lados.
 4. **Nunca copies el `estado.md` de `listo/` sobre tu avance real**: es la plantilla vacía.
+
+## Bóveda obsidian-jbs
+
+El adaptador específico está en `adaptadores/obsidian-boveda/`, incluidos
+`CLAUDE.md`, `AGENTS-tutor.md`, método, mapa, criterios, dos agentes y seis skills.
+El mismo comando `python armar_paquete.py` genera `listo/obsidian-boveda/`.
+Sigue [la guía de instalación](adaptadores/obsidian-boveda/INSTALACION.md).
+
+Este destino conserva el avance en notas de conceptos y bitácora; no utiliza
+la plantilla `estado.md` de los otros tres paquetes. No hay sincronización automática.
+Los cinco modos descritos arriba corresponden a las plataformas anteriores;
+Obsidian añade `destilar-sesion`. Sus fuentes están separadas explícitamente
+hasta completar la unificación del núcleo.
+
+Validación del adaptador: `python -m unittest discover -s tests -v`.
