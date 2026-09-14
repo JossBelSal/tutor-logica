@@ -236,79 +236,224 @@ con ayuda (`~`) en ese lenguaje.
 
 ## cierre-de-sesion
 
-**Cuándo usarlo:** Cierra una sesión de estudio de programación: actualiza estado.md y bitácora, o entrega los bloques listos para copiar si no puede editar archivos. Usar al terminar un tema o al pedir "cierre".
+**Cuándo usarlo:** Cierra una sesión de estudio: registra el avance donde viva (nota de concepto o estado.md) y agrega la bitácora, o entrega bloques para copiar. Usar al terminar un tema o al pedir "cierre".
 
-Objetivo: que el avance quede registrado **igual en todas las plataformas**, para poder estudiar
-un día en Claude Code, otro en un Proyecto de Claude y otro en ChatGPT sin perder el hilo.
+Objetivo: que el avance quede registrado **en la bóveda**, pase lo que pase, para poder estudiar
+un día en Claude Code, otro en un Proyecto de Claude y otro en ChatGPT sin perder el hilo. La
+bóveda de Obsidian es el destino final de todo; las demás plataformas alimentan a la bóveda.
 
 ### 1. Evalúa con honestidad
 
-Registra lo que **realmente** pasó, no lo que se cubrió:
+Registra lo que **realmente** pasó, no lo que se cubrió. El criterio duro está en
+`criterios-dominio.md` ([[Logica - Criterios de dominio]] en la bóveda):
 
-- `✓` solo si pasó la verificación **sin ayuda**.
-- `~` si necesitó pistas, corrección directa o falló la predicción.
-- Lo que se explicó pero no se verificó **no se marca**.
-- Nunca bajes un `✓` a `~` salvo que haya fallado un repaso. Sube `~` a `✓` cuando lo pase.
+- `dominado` solo si pasó la verificación **sin pistas**, con un ejemplo que no había visto.
+- `debil` si necesitó pistas, corrección directa o falló la predicción.
+- `leido` si lo explica y lo traduce pero no lo escribe de cero — es la meta en los lenguajes
+  de contraste, no un premio de consolación.
+- Lo que se explicó pero **no se verificó** no se marca: se queda en `no-visto`.
+- Nunca bajes un `dominado` salvo que falle un repaso.
 
 Pregunta en una línea: "¿Hay algo que sientas flojo y no haya salido en la verificación?". Si
-dice que sí, márcalo `~`.
+dice que sí, márcalo `debil`.
 
-### 2. Arma el `estado.md` completo
+### 2. Identifica dónde vive el avance
 
-Parte del estado anterior (el pegado por el usuario o el archivo) y aplica los cambios. Siempre
-**completo**, nunca solo la diferencia, porque va a **reemplazar** el archivo.
+Mira el terreno antes de escribir (es la tabla de `metodo-tutor.md`):
+
+| Caso | Señal | Qué haces |
+|---|---|---|
+| **A · Bóveda** | existe `Logica/Conceptos/` | §3 |
+| **B · Carpeta plana** | existe `estado.md`, no hay `Logica/` | §4 |
+| **C · Chat** | no puedes editar archivos | §5 |
+
+### 3. Caso A — bóveda de Obsidian
+
+Dos escrituras, ni una más. **No crees `estado.md`**: en la bóveda el avance es una consulta
+Dataview sobre el frontmatter, no un archivo.
+
+**a) La nota del concepto** — `Logica/Conceptos/B<n>-<nn> <Concepto>.md`, por ejemplo
+`Logica/Conceptos/B2-04 Evaluación en cortocircuito.md`. Si no existe, créala con
+`99-Plantillas/Plantilla - Concepto.md`. Al cerrar, actualiza en su frontmatter el campo del
+lenguaje trabajado y la fecha:
+
+```yaml
+logica: dominado     # no-visto · leido · debil · dominado · n/a
+python: debil
+ultima: AAAA-MM-DD
+```
+
+Rellena además las secciones que la sesión tocó de verdad (*Qué hace*, *Por qué se hace así*,
+*Cuándo NO usarlo*, *Dónde se tropieza todo el mundo*, la traza, la comparación). Una sección
+vacía es mejor que una inventada.
+
+Cuando la nota queda `dominado` en `logica` y en `python`, cambia su tag `#estado/en-curso` a
+`#estado/terminado`.
+
+**b) La bitácora** — `Logica/Logica - Bitacora.md`, una entrada nueva **abajo**. Nunca borres ni
+reescribas historial. Un repaso aprobado se anota en la entrada nueva
+(`Repaso de: <concepto> → ahora dominado`), no editando la entrada vieja.
+
+El mapa y el Dashboard se actualizan solos a partir de (a): no hay tablas que marcar a mano.
+
+**Enlaces obligatorios** (es lo que hace navegable la bóveda):
+
+- La entrada de bitácora cita la nota con wikilink: `[[B2-04 Evaluación en cortocircuito]]`.
+- La nota enlaza de vuelta a `[[Logica - Bitacora]]` en su sección *Enlaces*.
+- Si hubo ejercicio ejecutable, la nota lo referencia por **ruta relativa**
+  (`../../Python/Aprendizaje/cortocircuito.py`), no con wikilink: los `.py` no son notas.
+
+### 4. Caso B — carpeta plana
+
+Reemplaza `estado.md` con la foto **completa** (nunca solo la diferencia, porque sustituye al
+archivo) y agrega la entrada al final de `bitacora.md`, creándolo si no existe.
 
 ```markdown
 # Estado actual
 
-_Actualizado: AAAA-MM-DD · Plataforma: Claude Code | Claude | ChatGPT_
+_Actualizado: AAAA-MM-DD · Plataforma: Claude Code_
 
 ## Foto
 
 - **Última sesión:** AAAA-MM-DD — <tema> (<IDs>)
 - **Bloque actual:** B<n> — <nombre>
-- **Débil / a repasar:** B<n.n> <concepto> en <lenguaje> (desde AAAA-MM-DD); …
+- **Débil / a repasar:** B<n.n> <concepto> en <lenguaje> (desde AAAA-MM-DD)
 - **Siguiente paso:** …
 
 ## Avance por concepto
 
-Leyenda: `✓` dominado · `~` visto pero débil · `n/a` no aplica. Lo que no aparece aún no se ha visto.
+Leyenda: `✓` dominado · `~` débil · `n/a` no aplica. Lo que no aparece no se ha visto.
 Lenguajes: `L` Lógica · `Py` · `C++` · `JS` · `AU` AutoIt · `X++` · `VBA`
 
-- B2.6 Ciclos con contador — L ✓ · Py ✓ · VBA ~
-- B2.8 Patrones: acumulador, contador, bandera, centinela — L ✓ · Py ~
+- B2.9 Patrones: acumulador, contador, bandera, centinela — L ✓ · Py ~
 ```
 
-Reglas del avance: **una línea por concepto**, ordenadas por ID, solo los lenguajes que ya se
-vieron en ese concepto. Quita de "Débil" lo que ya pasó a `✓`.
+Una línea por concepto, ordenadas por ID, solo los lenguajes ya vistos en ese concepto.
 
-### 3. Arma la entrada de bitácora
+### 5. Caso C — chat que no escribe archivos
+
+Entrega exactamente esto, en este orden, y **nada después**:
+
+1. Una línea: "Guarda esto en tu bóveda."
+2. Un bloque `markdown` con la **nota del concepto completa**, con su frontmatter, lista para
+   pegarse como `Logica/Conceptos/B<n>-<nn> <Concepto>.md`.
+3. Una línea: "Pega esta entrada al final de `Logica/Logica - Bitacora.md`."
+4. Un bloque `markdown` con la **entrada de bitácora**.
+5. Una línea con el siguiente paso.
+
+Si el usuario prefiere no cerrar ahora, dile que puede pegar el chat completo en `00-Inbox/` y
+usar después el modo `destilar-chat`: nada de lo estudiado tiene por qué perderse.
+
+### 6. Plantilla de la entrada de bitácora
+
+Vale para los tres casos:
 
 ```markdown
 ## AAAA-MM-DD — <Tema> (<IDs>)
 
-- **Plataforma:** …
-- **Concepto(s) visto(s):** …
+- **Plataforma:** Claude Code | Claude | ChatGPT | Codex
+- **Concepto(s):** [[B2-04 Evaluación en cortocircuito]]
 - **Lenguajes usados:** Python + <comparación>
 - **Analogía que funcionó:** …
 - **Dominado:** (pasó la verificación sin ayuda)
 - **Débil / a repasar:** (necesitó pistas o falló la predicción)
-- **Error interesante:** (qué se rompió y por qué)
+- **Error interesante:** (qué se rompió, por qué, cómo se leyó el mensaje)
+- **Lógica reutilizable:** (lo que sobrevive al cambio de lenguaje)
+- **Sintaxis del lenguaje:** (lo que se queda en este lenguaje)
+- **Fuente consultada:** (liga a doc oficial, si aplica)
 - **Siguiente paso:** …
 ```
 
-### 4. Entrega según la plataforma
+Las dos líneas de **lógica vs sintaxis** son las etiquetas `[Lógica]` / `[Sintaxis]` aplicadas
+al registro. Si la idea era correcta pero escribió mal un método, es sintaxis. Si el código
+corre pero resuelve mal el problema, es lógica.
 
-**Si puedes editar archivos** (Claude Code):
+---
 
-- Reemplaza `estado.md` con el nuevo contenido.
-- Agrega la entrada **al final** de `bitacora.md` (créalo si no existe). Nunca borres historial.
-- Confirma en una línea qué se actualizó y cuál es el siguiente paso.
+## destilar-sesion
 
-**Si no puedes editar archivos** (Proyecto de Claude o de ChatGPT), entrega exactamente esto:
+**Cuándo usarlo:** Convierte una sesión cruda (chat pegado de ChatGPT o Claude, archivo del Inbox, o trabajo hecho en un repo) en nota de concepto y entrada de bitácora. Usar al pedir "destila".
 
-1. Una línea: "Reemplaza `estado.md` en los archivos del proyecto y en tu carpeta maestra."
-2. Un bloque de código `markdown` con el **`estado.md` completo**.
-3. Una línea: "Pega esta entrada al final de tu `bitacora.md`."
-4. Un bloque de código `markdown` con la **entrada de bitácora**.
-5. Una línea con el siguiente paso. Nada más después.
+Objetivo: **que nada de lo estudiado se quede fuera de la bóveda.** Este modo recoge lo que no
+se cerró en su momento —un chat de ChatGPT, una sesión de Claude web, trabajo hecho en un repo
+con Codex o Claude Code— y lo convierte en las mismas dos escrituras que produce
+`cierre-de-sesion`: la nota del concepto y la entrada de bitácora.
+
+Es el modo de **recuperación**. `cierre-de-sesion` es el camino ordenado; este es la red.
+
+### 1. De dónde viene el material
+
+| Origen | Cómo llega | Qué revisar |
+|---|---|---|
+| Chat de ChatGPT o Claude | el usuario lo pega, o lo deja en `00-Inbox/` | el texto tal cual |
+| Sesión en un repo | commits, diffs, archivos nuevos | `git log`, el diff, los archivos tocados |
+| Ejercicio suelto | un `.py`, `.xpp`, `.au3` que apareció | el archivo y su historial |
+
+Si el usuario solo dice "destila" sin dar material, pregunta en una línea cuál de los tres es y
+espera. No inventes la sesión.
+
+### 2. Lee, no resumas todavía
+
+Antes de escribir nada, contesta para ti:
+
+1. ¿Qué **conceptos** del mapa aparecen aquí? Nómbralos con su ID (`B4.10`, `B2.4`). Si un
+   tema no está en el mapa, dilo: puede que haga falta agregarlo.
+2. ¿Qué **se demostró** y qué solo se leyó? Un chat donde la IA explicó y el usuario dijo "ok"
+   no demuestra nada.
+3. ¿Qué **errores** aparecieron? Son el material más valioso y el que más se pierde.
+4. ¿Qué quedó **a medias**?
+
+### 3. La regla de honestidad, que aquí es más estricta
+
+Una sesión destilada **casi nunca produce `dominado`**. En un chat viejo no hubo verificación
+controlada: hubo explicación. Por defecto:
+
+- `leido` — se explicó y el usuario siguió el hilo.
+- `debil` — el usuario se atoró, pidió pistas o se equivocó.
+- `dominado` — **solo** si en el material hay evidencia explícita de que resolvió algo sin
+  ayuda y sin ver la solución antes.
+
+Si dudas entre dos valores, elige el más bajo y dilo. Marcar de más rompe el sistema entero:
+el repaso nunca llega porque nada aparece como débil.
+
+### 4. Confirma antes de escribir
+
+Presenta en una tabla corta, y **espera respuesta**:
+
+| Concepto (ID) | Qué muestra el material | Marca propuesta |
+|---|---|---|
+| B4.10 Recursión | explicó caso base, no escribió código propio | `logica: leido` |
+| B2.4 Cortocircuito | falló la predicción de `a or b()` | `logica: debil` |
+
+Pregunta en una línea: "¿Alguna marca que suba o baje?". El usuario estuvo en esa sesión y tú
+no: su corrección manda.
+
+### 5. Escribe
+
+Igual que `cierre-de-sesion` §3, con tres diferencias:
+
+- La entrada de bitácora lleva la **fecha real de la sesión** si se puede saber (la del chat,
+  la del commit), no la de hoy. Si no se sabe, pon la de hoy y anota `(fecha aproximada)`.
+- Agrega el campo **`- **Origen:** destilado de <ChatGPT | Claude | repo X>`** para distinguir
+  lo reconstruido de lo vivido. Dentro de un año esa distinción importa.
+- Si la sesión venía de `00-Inbox/`, **mueve o borra el archivo crudo** cuando termines, y dilo.
+  El Inbox es captura temporal, no archivo.
+
+### 6. Varias sesiones de golpe
+
+Si el usuario trae un lote (tres chats, un mes de commits):
+
+1. Procésalos **en orden cronológico**, no todos a la vez: una marca posterior puede subir una
+   anterior, y al revés no.
+2. Una entrada de bitácora **por sesión**, no una entrada resumen. El historial es el valor.
+3. Una sola nota por concepto, aunque aparezca en tres sesiones: acumula, no dupliques.
+4. Al final, un resumen de 3 líneas: cuántas entradas, qué conceptos nuevos, qué quedó débil.
+
+### 7. Qué NO hacer
+
+- **No enseñes durante la destilación.** Si ves un error que el usuario cometió hace un mes,
+  anótalo como *Error interesante* y ofrécelo como repaso al final. No lo corrijas a medio
+  registro: contamina el registro y alarga la tarea.
+- **No inventes analogías ni trazas** que no estaban en el material. Una sección vacía en la
+  nota es honesta; una inventada es ruido que el usuario va a creerse suyo.
+- **No marques `dominado` por simpatía.**
