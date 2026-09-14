@@ -9,6 +9,7 @@ Salida (se regenera completa, no editar a mano):
     listo/claude-code/programacion/   carpeta lista para Claude Code
     listo/claude-proyecto/            instrucciones + archivos + skills en .zip
     listo/chatgpt-proyecto/           instrucciones + archivos (modos en un solo .md)
+    listo/obsidian-boveda/            adaptador de Obsidian, sin progreso personal
 
 Uso:  python armar_paquete.py
 """
@@ -18,6 +19,8 @@ import shutil
 import sys
 import zipfile
 from pathlib import Path
+
+from obsidian_paquete import generar as generar_obsidian, validar as validar_obsidian
 
 RAIZ = Path(__file__).resolve().parent
 NUCLEO = RAIZ / "nucleo"
@@ -43,7 +46,8 @@ def leer(ruta: Path) -> str:
 
 def escribir(ruta: Path, texto: str) -> None:
     ruta.parent.mkdir(parents=True, exist_ok=True)
-    ruta.write_text(texto, encoding="utf-8", newline="\n")
+    with ruta.open("w", encoding="utf-8", newline="\n") as archivo:
+        archivo.write(texto)
 
 
 def separar_frontmatter(texto: str) -> tuple[dict, str]:
@@ -107,6 +111,9 @@ def main() -> int:
         print("ERRORES:\n  " + "\n  ".join(errores))
         return 1
 
+    # Validar el adaptador antes de limpiar cualquier salida existente.
+    validar_obsidian(RAIZ)
+
     # 2. Limpiar salida
     if LISTO.exists():
         shutil.rmtree(LISTO)
@@ -153,6 +160,9 @@ def main() -> int:
             for f in sorted(carpeta.rglob("*")):
                 if f.is_file():
                     z.write(f, Path(carpeta.name) / f.relative_to(carpeta))
+
+    # Distribución específica para una bóveda Obsidian existente.
+    generar_obsidian(RAIZ)
 
     # 7. Resumen
     print("Paquete armado en:", LISTO)
