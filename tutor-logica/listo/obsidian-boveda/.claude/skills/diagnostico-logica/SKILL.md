@@ -56,5 +56,6 @@ print(total)  # ¿qué imprime y por qué?
 2. Ahora sí, explica brevemente **cada respuesta incorrecta**: qué pasó y por qué, sin extenderte.
 3. **Propón el punto de partida** con su ID (por ejemplo "arrancamos en B2.8") y justifícalo en
    una línea. Espera confirmación.
-4. Ejecuta el modo **`cierre-de-sesion`** para crear el primer `estado.md`. Marca en el avance
-   solo lo que tuvo evidencia clara; en duda, `~`.
+4. Ejecuta el modo **`cierre-de-sesion`** para registrar el avance donde viva (él decide si
+   es la bóveda, `estado.md` o un bloque para copiar). Marca solo lo que tuvo evidencia clara;
+   en duda, `~`.
