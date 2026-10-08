@@ -60,8 +60,9 @@ print(total)  # ¿qué imprime y por qué?
 2. Ahora sí, explica brevemente **cada respuesta incorrecta**: qué pasó y por qué, sin extenderte.
 3. **Propón el punto de partida** con su ID (por ejemplo "arrancamos en B2.8") y justifícalo en
    una línea. Espera confirmación.
-4. Ejecuta el modo **`cierre-de-sesion`** para crear el primer `estado.md`. Marca en el avance
-   solo lo que tuvo evidencia clara; en duda, `~`.
+4. Ejecuta el modo **`cierre-de-sesion`** para registrar el avance donde viva (él decide si
+   es la bóveda, `estado.md` o un bloque para copiar). Marca solo lo que tuvo evidencia clara;
+   en duda, `~`.
 
 ---
 
@@ -81,7 +82,7 @@ reglas generales de `metodo-tutor.md`.
 | Nivel | Qué exige |
 |---|---|
 | **Fácil** | Aplicar el concepto tal cual se vio |
-| **Medio** | Combinarlo con un concepto anterior ya marcado como `✓` en `estado.md` |
+| **Medio** | Combinarlo con un concepto anterior ya dominado en el avance (notas de `Logica/Conceptos/` o `estado.md`) |
 | **Difícil** | Un caso límite que rompe la solución ingenua, o un problema que obliga a diseñar la solución |
 
 Cada ejercicio lleva:

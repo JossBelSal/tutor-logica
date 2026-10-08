@@ -17,7 +17,7 @@ reglas generales de `metodo-tutor.md`.
 | Nivel | Qué exige |
 |---|---|
 | **Fácil** | Aplicar el concepto tal cual se vio |
-| **Medio** | Combinarlo con un concepto anterior ya marcado como `✓` en `estado.md` |
+| **Medio** | Combinarlo con un concepto anterior ya dominado en el avance (notas de `Logica/Conceptos/` o `estado.md`) |
 | **Difícil** | Un caso límite que rompe la solución ingenua, o un problema que obliga a diseñar la solución |
 
 Cada ejercicio lleva:
